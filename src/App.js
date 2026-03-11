@@ -1,24 +1,77 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import "./App.css";
+import { useState } from "react";
+const arr = ["✌️", "👊", "🤚"];
+const ran = () => Math.trunc(Math.random() * arr.length);
+const Header = function () {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="heading">
+      <h1>{"rock paper scissor".toUpperCase()}</h1>
+      <p>Description</p>
     </div>
+  );
+};
+const Score = function ({ playerScore, AiScore }) {
+  return (
+    <div className="score">
+      <span>player:{playerScore}</span>
+      <span>AI:{AiScore}</span>
+    </div>
+  );
+};
+const Play = function ({ emoji, random }) {
+  return (
+    <div className="play">
+      <section>
+        <span>{emoji}</span>
+      </section>
+      <section>
+        <span>{random}</span>
+      </section>
+    </div>
+  );
+};
+const Buttons = function ({ fun }) {
+  return (
+    <div className="btns">
+      <button onClick={fun}>✌️</button>
+      <button onClick={fun}>🤚</button>
+      <button onClick={fun}>👊</button>
+    </div>
+  );
+};
+function App() {
+  let [status, SetStatus] = useState("");
+  let [ranEmoji, Setemoji] = useState("");
+  let [playerScore, setPlayerScore] = useState(0);
+  let [AiScore, setAiScore] = useState(0);
+  let setScore = () => {
+    if (status === "✌️" && ranEmoji === "🤚") {
+      setPlayerScore(playerScore + 1);
+    } else if (status === "👊" && ranEmoji === "✌️") {
+      setPlayerScore(playerScore + 1);
+    } else if (status === "🤚" && ranEmoji === "👊") {
+      setPlayerScore(playerScore + 1);
+    } else if (status === ranEmoji) {
+      setAiScore(AiScore + 0);
+      setPlayerScore(playerScore + 0);
+    } else {
+      setAiScore(AiScore + 1);
+    }
+  };
+  let update = (e) => {
+    SetStatus(e.target.textContent);
+    Setemoji(arr[ran()]);
+    console.log(ranEmoji);
+    setScore();
+  };
+
+  return (
+    <section className="box">
+      <Header></Header>
+      <Score playerScore={playerScore} AiScore={AiScore}></Score>
+      <Play emoji={status} random={ranEmoji}></Play>
+      <Buttons fun={update}></Buttons>
+    </section>
   );
 }
 
