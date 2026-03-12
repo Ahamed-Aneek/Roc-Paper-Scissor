@@ -33,9 +33,9 @@ const Play = function ({ emoji, random }) {
 const Buttons = function ({ fun }) {
   return (
     <div className="btns">
-      <button onClick={fun}>✌️</button>
-      <button onClick={fun}>🤚</button>
-      <button onClick={fun}>👊</button>
+      {arr.map((e) => (
+        <button onClick={fun}>{e}</button>
+      ))}
     </div>
   );
 };
@@ -64,7 +64,7 @@ function App() {
     console.log(ranEmoji);
     setScore();
   };
-
+  ///////////
   return (
     <section className="box">
       <Header></Header>
