@@ -63,3 +63,18 @@ code {
   flex-direction: column;
   align-items: center;
 }
+.reset {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+.reset button {
+  border: none;
+}
+.reset button:hover {
+  background-color: #e5dbff;
+  scale: 1.1;
+  transition: ease-in 100ms;
+}

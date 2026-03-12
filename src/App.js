@@ -1,5 +1,6 @@
 import "./App.css";
 import { useState } from "react";
+import { Footer } from "./helper";
 const arr = ["✌️", "👊", "🤚"];
 const ran = () => Math.trunc(Math.random() * arr.length);
 const Header = function () {
@@ -64,6 +65,12 @@ function App() {
     console.log(ranEmoji);
     setScore();
   };
+  const reset = () => {
+    SetStatus("");
+    setPlayerScore(0);
+    Setemoji("");
+    setAiScore(0);
+  };
   ///////////
   return (
     <section className="box">
@@ -71,6 +78,7 @@ function App() {
       <Score playerScore={playerScore} AiScore={AiScore}></Score>
       <Play emoji={status} random={ranEmoji}></Play>
       <Buttons fun={update}></Buttons>
+      <Footer reset={reset}></Footer>
     </section>
   );
 }
